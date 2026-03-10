@@ -1,0 +1,4 @@
+interface:
+  display_name: "中文 PRD"
+  short_description: "用中文完成需求澄清、方案收敛、实现决策和可开发PRD草拟"
+  default_prompt: "使用 $write-prd-zh 帮我把这个功能想法整理成一份中文 PRD。"
