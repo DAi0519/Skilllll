@@ -1,5 +1,5 @@
 ---
-name: write-prd-zh
+name: prd
 description: Draft Chinese PRDs for both new project kickoff and midstream feature changes. Use when Claude needs to turn a rough idea, project intent, feature request, workflow change, or product update into a structured Chinese requirements document, whether the work is a brand-new product definition or a scoped PRD for an existing product or system.
 ---
 
