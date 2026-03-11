@@ -1,4 +1,4 @@
-# /prd — Claude Code 中文 PRD Skill
+#PRD Skill
 
 把一句产品意图变成一份完整的中文需求文档，面向 AI agent 执行，而不是给人类分配工单。
 
