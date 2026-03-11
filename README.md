@@ -21,7 +21,7 @@ curl -sL https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.sh | ba
 irm https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.ps1 | iex
 ```
 
-安装后重启 Claude Code 即可使用 `/prd`。
+安装脚本会自动检测已安装的工具（Claude Code / OpenCode / Codex），并写入对应目录。**安装完成后需手动重启工具**，重启后即可使用 `/prd`。
 
 ---
 
@@ -48,11 +48,13 @@ irm https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.ps1 | iex
 ### macOS / Linux / WSL
 
 ```bash
-rm -rf ~/.claude/skills/prd
+rm -rf ~/.claude/skills/prd   # Claude Code / OpenCode
+rm -rf ~/.codex/skills/prd    # Codex
 ```
 
 ### Windows (PowerShell)
 
 ```powershell
-Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\skills\prd"
+Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\skills\prd"  # Claude Code / OpenCode
+Remove-Item -Recurse -Force "$env:USERPROFILE\.codex\skills\prd"   # Codex
 ```
