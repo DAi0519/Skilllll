@@ -1,27 +1,43 @@
-# PRD Skill
+# Skilllll
 
-把一句产品意图变成一份完整的中文需求文档，面向 AI agent 执行，而不是给人类分配工单。
+一组面向 AI agent 的 Skill 合集，让 Claude Code / Codex 拥有更专业的工作流。
 
-支持两种场景：**项目启动**（从零定义产品）和**功能改动**（在现有系统上增改需求）。
-支持三条链路：`PRD` / `PRD → Plan` / `PRD → Plan → Issues`。
+## 包含的 Skills
+
+| Skill | 命令 | 说明 |
+|-------|------|------|
+| **PRD** | `/prd` | 把模糊想法变成完整的中文需求文档，支持项目启动和功能改动两种场景 |
+| **Design System** | `/design-system` | 从 PRD 或现有代码库生成设计系统规范与代码资产，输出 token、主题配置、预览页和组件规范 |
 
 ---
 
 ## 安装
 
+默认安装全部 skill。
+
 ### macOS / Linux / WSL
 
 ```bash
+# 安装全部
 curl -sL https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.sh | bash
+
+# 只安装某个 skill
+curl -sL https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.sh | SKILL=prd bash
+curl -sL https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.sh | SKILL=design-system bash
 ```
 
 ### Windows (PowerShell)
 
 ```powershell
+# 安装全部
 irm https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.ps1 | iex
+
+# 只安装某个 skill
+$env:SKILL="prd"; irm https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.ps1 | iex
+$env:SKILL="design-system"; irm https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.ps1 | iex
 ```
 
-安装脚本会自动检测已安装的工具（Claude Code / OpenCode / Codex），并写入对应目录。**安装完成后需手动重启工具**，重启后即可使用 `/prd`。
+安装脚本会自动检测已安装的工具（Claude Code / Codex），并写入对应目录。**安装完成后需手动重启工具**。
 
 ---
 
@@ -32,14 +48,8 @@ irm https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.ps1 | iex
 ```
 
 ```
-/prd 在现有订单系统里加一个退款申请流程
+/design-system 基于这个 PRD 生成设计系统规范和 token
 ```
-
-```
-/prd 帮我定义这个项目，顺手拆计划和 issues
-```
-
-产物默认保存在当前项目的 `PRD-Outputs/` 目录下。
 
 ---
 
@@ -48,13 +58,23 @@ irm https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.ps1 | iex
 ### macOS / Linux / WSL
 
 ```bash
-rm -rf ~/.claude/skills/prd   # Claude Code / OpenCode
-rm -rf ~/.codex/skills/prd    # Codex
+# 卸载全部
+rm -rf ~/.claude/skills/prd ~/.claude/skills/design-system
+rm -rf ~/.codex/skills/prd ~/.codex/skills/design-system
+
+# 卸载单个
+rm -rf ~/.claude/skills/prd
+rm -rf ~/.claude/skills/design-system
 ```
 
 ### Windows (PowerShell)
 
 ```powershell
-Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\skills\prd"  # Claude Code / OpenCode
-Remove-Item -Recurse -Force "$env:USERPROFILE\.codex\skills\prd"   # Codex
+# 卸载全部
+Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\skills\prd", "$env:USERPROFILE\.claude\skills\design-system"
+Remove-Item -Recurse -Force "$env:USERPROFILE\.codex\skills\prd", "$env:USERPROFILE\.codex\skills\design-system"
+
+# 卸载单个
+Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\skills\prd"
+Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\skills\design-system"
 ```
