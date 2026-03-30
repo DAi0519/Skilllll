@@ -69,7 +69,8 @@ install_skill() {
         feature-prd-template.md \
         issues-template.md \
         plan-template.md \
-        prd-template.md; do
+        prd-template.md \
+        prd-template-general.md; do
         download_file "${BASE_URL}/${repo_dir}/references/${file}" "${refs_dir}/${file}"
       done
       ;;
