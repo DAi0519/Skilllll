@@ -1,6 +1,8 @@
 # AI 产品 PRD 模板
 
-按下面结构起草。这份模板对应 [ai-product-output-standard.md](ai-product-output-standard.md) 的 9 个必要交付部分，适合 AI 产品项目启动场景。
+按下面结构起草。这份模板适合**产品本身包含 AI/Agent 能力**的项目启动场景（如智能客服、AI 助手、内容生成工具、对话式应用等），对应 [ai-product-output-standard.md](ai-product-output-standard.md) 的必要交付部分。
+
+如果产品本身不包含 AI 能力，应使用 [prd-template-general.md](prd-template-general.md) 替代。
 
 不必机械照抄所有章节，但不要删掉"非目标""假设""开放问题"，以及 AI 产品特有的"Agent 故事""Prompt 设计规范""评测集""评估体系"。
 
