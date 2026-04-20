@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "clock-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8767", "-d", "/Users/dai/WORK/minimal-clock/Design-system/preview"],
+      "port": 8767
+    }
+  ]
+}
