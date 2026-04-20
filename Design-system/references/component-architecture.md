@@ -259,6 +259,145 @@ Apple SF Symbols 7 为图标和组件定义了一套**标准动画预设系统**
 - 统一 API: size (small/middle/large), variant, disabled, loading
 - ConfigProvider 主题配置
 
+---
+
+## 十一、建议补充的组件输出模板
+
+当前文档已经覆盖了组件分层、属性系统、状态和无障碍，方法论层面是完整的。更值得补充的是**最终输出时每个组件要写到什么粒度**。
+
+换句话说，这里需要补的是“交付规格模板”，而不是更多概念定义。
+
+建议补这层最小交付模板。
+
+### 1. 每个核心组件至少要输出五类信息
+
+| 模块 | 必须包含 |
+|------|---------|
+| Variants | 组件有哪些版本 |
+| Specs | 尺寸、padding、font、radius、border、背景 |
+| States | default / hover / active / focus / disabled / loading |
+| Content Layout | 标题、描述、metadata、icon、slot 如何排 |
+| Accessibility | touch target、focus、keyboard、aria |
+
+如果没有这五类，组件规范容易停在“原则”层，落不到真实实现。
+
+### 2. 推荐的最低覆盖组件集
+
+建议 design skill 默认至少产出这些组件规范：
+
+| 组件 | 原因 |
+|------|------|
+| Button | 所有系统都需要，最能暴露色彩与层级策略 |
+| Card / Surface | 最能体现 surface / border / shadow / radius |
+| Input / Textarea | 最能暴露 `border-visible`、focus、error |
+| List / Data Row | 最能体现密度、对齐、文本层次 |
+| Navigation / Tab | 最能体现信息架构和 active/inactive 规则 |
+| Tag / Chip / Badge | 最能体现 accent-subtle 和 status tint |
+| Overlay / Modal / Dropdown | 最能体现 elevation 和 container radius |
+| Toggle / Checkbox / Radio | 最能体现 control 级别 token 和状态切换 |
+| Empty / Loading / Error | 最能体现 state pattern，而不是只定义静态组件 |
+
+这几点里，最值得补的是：
+
+- List / Data Row 这种“信息密度型组件”
+- Empty / Loading / Error 这种“状态模式”
+- Overlay / Dropdown 这种“容器层级型组件”
+
+### 3. 建议把“组件模板”固定成统一格式
+
+推荐输出结构：
+
+```markdown
+## Button
+
+### Variants
+primary / secondary / ghost / destructive
+
+### Specs
+- Height:
+- Padding:
+- Font:
+- Radius:
+- Background:
+- Border:
+
+### States
+- Hover:
+- Active:
+- Focus:
+- Disabled:
+- Loading:
+
+### Accessibility
+- Min touch target:
+- Keyboard:
+- Focus visible:
+```
+
+卡片、输入框、弹层、列表都按同一结构写。这样生成结果更容易稳定，后续转代码也更顺。
+
+### 4. 组件文档里要显式写“依赖哪些 token”
+
+建议每个组件至少说明：
+
+- 使用了哪些 semantic color token
+- 使用了哪些 spacing token
+- 使用了哪些 radius token
+- 使用了哪些 motion token
+
+例如不要只写：
+
+- “按钮圆角 8px”
+
+而要更倾向写：
+
+- “按钮使用 `radius-control`”
+
+这样组件与 token 才真正绑定在一起。
+
+### 5. 状态不只写名字，要写“变化机制”
+
+当前已经列了 default / hover / pressed / focused / disabled / loading / error。  
+建议再补一层要求：每个状态必须说明到底变什么。
+
+优先级建议：
+
+| 状态 | 必须说明 |
+|------|---------|
+| Hover | 背景 / 描边 / 文本 / 阴影变化 |
+| Active | 颜色加深、位移、缩放或 state layer |
+| Focus | focus ring 的颜色、宽度、offset |
+| Disabled | 降低哪些层，不只是 opacity |
+| Loading | 替换为 spinner、保留宽度还是不保留 |
+| Error | 是边框变红、文字变红，还是附加消息 |
+
+这会比“列状态名”更适合真实生成。
+
+### 6. 把组件按“功能 + 规格”双轴输出
+
+当前已经有按功能分类。  
+建议在最终生成时要求：
+
+- 文档目录按功能分类组织
+- 每个组件章节内部按规格模板输出
+
+也就是：
+
+- 外层回答“这类组件做什么”
+- 内层回答“这个组件怎么长、怎么变、怎么落代码”
+
+### 7. 最值得借的，不是更多组件，而是更具体的 contract
+
+总结一下，这里更需要补的是这些“输出合同”：
+
+1. 核心组件最小覆盖集
+2. 每个组件固定输出格式
+3. 每个状态必须描述变化机制
+4. 每个组件必须回链到 token
+5. 状态模式也视作组件体系的一部分
+
+这几条一补，skill 生成出来的组件规范会明显更像“可执行规格”，而不是“设计系统说明文”。
+
 ### Carbon 组件架构
 - 组件状态: enabled, hover, focus, active, disabled, read-only, error, warning, skeleton
 - 组件解剖: container, label, helper text, input, icon, error message

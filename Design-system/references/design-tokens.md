@@ -213,3 +213,125 @@ color, dimension, fontFamily, fontWeight, duration, cubicBezier, number, strokeS
 | **Style Dictionary** (Amazon) | Token 转换为多平台格式 (CSS, SCSS, iOS, Android) |
 | **自定义脚本** | 从 `design-tokens.json` 生成项目需要的格式 |
 | **Storybook / 文档站** | 展示 token、组件和使用规范 |
+
+---
+
+## 八、建议补充的 Token 输出结构
+
+上面的内容解释了 token 是什么、如何分层、如何命名，但在设计系统生成过程中，还需要更明确的“最终应该产出哪些 token”。如果只写原则，不写输出契约，生成结果容易只停留在颜色、字号和间距，遗漏真正影响界面一致性的层。
+
+下面这组结构可作为默认输出基线。
+
+### 1. Color Ramps 不只要主色，还要完整梯度
+
+建议至少产出三类 primitive ramp：
+
+| 类别 | 建议梯度 | 用途 |
+|------|---------|------|
+| Neutral | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | 背景、文字、描边、层级 |
+| Brand | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | 主品牌色、弱强调、强强调 |
+| Status | 50 / 500 / 900 | success, warning, error 的背景 tint、前景和深色模式映射 |
+
+建议明确要求 neutral / brand / status 各自产出什么粒度，这样生成结果会更稳定。
+
+### 2. Typography Token 不应只是一组字号
+
+除了 `font-family / size / line-height / weight`，建议显式要求：
+
+| 维度 | 说明 |
+|------|------|
+| Display / Body / Mono 三角色 | 区分标题、正文、技术信息 |
+| Letter spacing | 特别是 display / label / caption |
+| Mono usage policy | 明确 mono 是否用于 code、是否用于 metrics |
+
+推荐补充两个布尔规则：
+
+- `mono_for_code`: mono 是否用于代码、路径、命令、技术标识
+- `mono_for_metrics`: mono 是否用于价格、数字、时间、百分比、计数
+
+这两个规则很小，但会直接影响产品气质，建议显式写入规范。
+
+### 3. Semantic Color 建议固定成一套最小契约
+
+建议要求每个 mode 至少产出这些 token：
+
+| 层级 | 建议 token |
+|------|-----------|
+| Background | `background` |
+| Surface | `surface1`, `surface2`, `surface3` |
+| Border | `border`, `border-visible` |
+| Text | `text1`, `text2`, `text3`, `text4` |
+| Accent | `accent`, `accent-subtle` |
+| Status | `success`, `warning`, `error` |
+| Status BG | `success-bg`, `warning-bg`, `error-bg` |
+
+其中最值得补的是：
+
+- `surface1/2/3`
+- `border-visible`
+- `text4`
+- `accent-subtle`
+- `success-bg / warning-bg / error-bg`
+
+这些层常常被遗漏，但它们对界面一致性非常关键。
+
+### 4. Radius 不要只列数值，要列语义层
+
+建议同时保留：
+
+- Primitive radii：如 `2 / 4 / 8 / 12 / 16 / 999`
+- Semantic radii：如 `element / control / component / container / pill`
+
+这样在组件层可以直接说“按钮用 `radius-control`，卡片用 `radius-component`”，而不是每次回填具体像素。
+
+### 5. Shadow / Elevation 应作为独立 token 层
+
+当前文档在 category 表里提到了 `shadow`，但没有规定最小输出结构。建议要求：
+
+| Level | 用途 |
+|------|------|
+| Elevation 0 | 扁平元素 |
+| Elevation 1 | 标准卡片、容器 |
+| Elevation 2 | 浮层、菜单、较高卡片 |
+| Elevation 3 | Modal / Dialog / Sheet |
+
+并且 light / dark 分别定义，不要只给一套阴影。
+
+### 6. Motion Token 需要从“有无”变成“合同”
+
+建议最少产出：
+
+| 维度 | 建议 token |
+|------|-----------|
+| Duration | `instant`, `fast`, `normal`, `slow` |
+| Easing | `default`, `emphasis`, `exit` |
+| Interaction buckets | `micro`, `standard`, `emphasis` |
+
+如果只写“支持动画”，生成结果很容易最后只输出一句原则，而不是实际可用 token。
+
+### 7. Iconography 也值得列入 token / spec 范围
+
+即使不做品牌分析，也建议至少要求：
+
+| 维度 | 内容 |
+|------|------|
+| Icon size tokens | inline / button / nav |
+| Stroke or fill style | outline / solid |
+| Color rule | 默认跟随 text、accent 或 semantic color |
+
+这一层可以不进入 `design-tokens.json` 的核心类型里，但应进入设计系统文档和预览约束。
+
+### 8. 推荐的最小 Token 产物清单
+
+生成结果建议至少覆盖：
+
+1. Primitive color ramps
+2. Semantic color tokens for light / dark
+3. Typography roles + type scale + mono usage policy
+4. Spacing scale
+5. Radii primitive + semantic mapping
+6. Elevation / shadow levels
+7. Motion durations + easing
+8. Icon size / color rules
+
+如果缺少 5-8，系统依然能工作，但会停留在“基础 token 整理”阶段，而不是“完整设计语言”。
