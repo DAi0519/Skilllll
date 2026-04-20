@@ -76,8 +76,10 @@ install_skill() {
       ;;
     design-system)
       for file in \
+        anti-generic-heuristics.md \
         color-system.md \
         component-architecture.md \
+        design-md-writing-guide.md \
         design-system-checklist.md \
         design-tokens.md \
         documentation-guide.md \
