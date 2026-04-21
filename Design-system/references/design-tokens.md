@@ -112,6 +112,45 @@
 
 ## 四、代码中的实现
 
+### 0. 单一真源原则 (Single Source of Truth)
+
+在实际项目里，token 最大的失败模式之一不是“值不够”，而是“同一个 token 文件里被拼进两套定义”。
+
+必须遵守三条硬规则：
+
+- **One file, one token contract**
+- **One semantic token, one meaning**
+- **Update by merge-and-rewrite, never append**
+
+这意味着：
+
+- 同一份 `colors.css` 里不能同时存在两套 semantic color 体系
+- 同一个 `color.text.primary` 不能在文件前后被定义成两个不同含义
+- 迭代时必须先收敛已有定义，再重写最终结果，不能靠“后定义覆盖前定义”维持表面可用
+
+### 0.1 Canonical Token Map
+
+在落任何具体文件之前，先建立一份 **canonical token map**：
+
+- 它是当前项目唯一认可的 token 真源
+- CSS / JSON / theme object / 文档都从它派生
+- 发现重复定义时，先更新 canonical map，再回写到各文件
+
+推荐流程：
+
+1. 扫描现有 token 文件
+2. 标记重复项、别名、并行命名
+3. 选定最终命名和最终值
+4. 生成 canonical token map
+5. 用 canonical token map 重写 `colors.css` / `typography.css` / `spacing.css` / `design-tokens.json`
+
+不要这样做：
+
+- 在文件底部再追加一套 token
+- 先保留旧块，再加一块“new tokens”
+- 让 JSON 和 CSS 各自维护不同命名
+- 让 semantic token 在不同文件里指向不同 primitive
+
 ### 1. Token 分组
 
 | Collection | 内容 | 发布设置 |
@@ -121,6 +160,12 @@
 | Typography | 字号、行高 token (含 Mobile/Desktop mode) | 面向业务使用 |
 | Spacing | 间距 token | 面向业务使用 |
 | Radius | 圆角 token | 面向业务使用 |
+
+补充约束：
+
+- 同一 collection 内不允许出现两套并行命名系统
+- 如果发现旧命名和新命名并存，应先做归并，再发布
+- `design-tokens.json` 与 CSS token 文件必须可互相映射，不能各自漂移
 
 ### 2. 模式 (Modes)
 - **颜色**: Light / Dark
@@ -219,6 +264,19 @@ color, dimension, fontFamily, fontWeight, duration, cubicBezier, number, strokeS
 ## 八、建议补充的 Token 输出结构
 
 上面的内容解释了 token 是什么、如何分层、如何命名，但在设计系统生成过程中，还需要更明确的“最终应该产出哪些 token”。如果只写原则，不写输出契约，生成结果容易只停留在颜色、字号和间距，遗漏真正影响界面一致性的层。
+
+同时，输出契约除了“该有哪些 token”，还必须包含“如何避免重复拼接”。
+
+### 0. 输出前的收敛检查
+
+在真正生成 token 文件前，先检查：
+
+- 是否已有同名 semantic token 的重复定义
+- 是否已有旧命名和新命名并存
+- 是否 `colors.css` 与 `design-tokens.json` 不一致
+- 是否 theme 文件与基础 token 文件映射漂移
+
+如果存在任一情况，先执行 **merge-and-rewrite**，不要直接生成新块。
 
 下面这组结构可作为默认输出基线。
 
