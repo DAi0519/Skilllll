@@ -68,19 +68,6 @@ $env:SKILL="design-system"; irm https://raw.githubusercontent.com/DAi0519/Skilll
 $env:SKILL="DAi-paper"; irm https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.ps1 | iex
 ```
 
-## 安装参数
-
-目前安装脚本支持这些值：
-
-| 参数 | 作用 |
-| --- | --- |
-| `SKILL=prd` | 只安装 `PRD` |
-| `SKILL=design-system` | 只安装 `Design System` |
-| `SKILL=DAi-paper` | 只安装 `DAi-paper` |
-| `SKILL=all` | 安装全部 skills |
-
-如果不传 `SKILL`，默认也是安装全部。
-
 ## 使用示例
 
 ```text
