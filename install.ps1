@@ -35,6 +35,12 @@ $SKILLS_REGISTRY = @{
       "visual-quality.md"
     )
   }
+  "DAi-paper" = @{
+    RepoDir = "DAi-paper"
+    Refs = @(
+      "template.md"
+    )
+  }
 }
 
 function Has-Claude {

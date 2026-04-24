@@ -91,6 +91,12 @@ install_skill() {
         download_file "${BASE_URL}/${repo_dir}/references/${file}" "${refs_dir}/${file}"
       done
       ;;
+    DAi-paper)
+      for file in \
+        template.md; do
+        download_file "${BASE_URL}/${repo_dir}/references/${file}" "${refs_dir}/${file}"
+      done
+      ;;
   esac
 
   UPDATED_TARGETS="${UPDATED_TARGETS}${target_name} /${skill_name}: ${install_dir}\n"
@@ -103,6 +109,7 @@ install_for_target() {
     all)
       install_skill "prd" "PRD" "$target_key"
       install_skill "design-system" "Design-system" "$target_key"
+      install_skill "DAi-paper" "DAi-paper" "$target_key"
       ;;
     prd)
       install_skill "prd" "PRD" "$target_key"
@@ -110,8 +117,11 @@ install_for_target() {
     design-system)
       install_skill "design-system" "Design-system" "$target_key"
       ;;
+    DAi-paper)
+      install_skill "DAi-paper" "DAi-paper" "$target_key"
+      ;;
     *)
-      echo "Error: unknown skill '${SKILL}'. Available: prd, design-system, all" >&2
+      echo "Error: unknown skill '${SKILL}'. Available: prd, design-system, DAi-paper, all" >&2
       exit 1
       ;;
   esac
