@@ -56,6 +56,7 @@ install_skill() {
   refs_dir="${install_dir}/references"
   echo "Installing ${target_name} skill: /${skill_name}"
 
+  rm -rf "${refs_dir}"
   mkdir -p "${install_dir}" "${refs_dir}"
 
   download_file "${BASE_URL}/${repo_dir}/SKILL.md" "${install_dir}/SKILL.md"
@@ -76,18 +77,11 @@ install_skill() {
       ;;
     design-system)
       for file in \
-        anti-generic-heuristics.md \
-        color-system.md \
-        component-architecture.md \
-        design-md-writing-guide.md \
-        design-system-checklist.md \
-        design-tokens.md \
-        documentation-guide.md \
-        icon-system.md \
-        spacing-and-layout.md \
-        tech-implementation.md \
-        typography-system.md \
-        visual-quality.md; do
+        apple-design-philosophy.md \
+        hierarchy-typography-discipline.md \
+        minimal-efficient-aesthetic.md \
+        practical-ui-field-guide.md \
+        design-direction-template.md; do
         download_file "${BASE_URL}/${repo_dir}/references/${file}" "${refs_dir}/${file}"
       done
       ;;

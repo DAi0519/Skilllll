@@ -21,18 +21,11 @@ $SKILLS_REGISTRY = @{
   "design-system" = @{
     RepoDir = "Design-system"
     Refs = @(
-      "anti-generic-heuristics.md",
-      "color-system.md",
-      "component-architecture.md",
-      "design-md-writing-guide.md",
-      "design-system-checklist.md",
-      "design-tokens.md",
-      "documentation-guide.md",
-      "icon-system.md",
-      "spacing-and-layout.md",
-      "tech-implementation.md",
-      "typography-system.md",
-      "visual-quality.md"
+      "apple-design-philosophy.md",
+      "hierarchy-typography-discipline.md",
+      "minimal-efficient-aesthetic.md",
+      "practical-ui-field-guide.md",
+      "design-direction-template.md"
     )
   }
   "DAi-paper" = @{
@@ -77,6 +70,10 @@ function Install-Skill {
 
   $refs = "$dest\references"
   Write-Host "Installing $label skill: /$SkillName"
+
+  if (Test-Path $refs) {
+    Remove-Item -Recurse -Force $refs
+  }
 
   New-Item -ItemType Directory -Force -Path $dest | Out-Null
   New-Item -ItemType Directory -Force -Path $refs | Out-Null

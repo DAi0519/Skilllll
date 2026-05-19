@@ -21,7 +21,7 @@
     <tr>
       <td><span style="white-space: nowrap;"><code>Design System</code></span></td>
       <td><span style="white-space: nowrap;"><code>/design-system</code></span></td>
-      <td>从 PRD 或现有代码库生成设计系统规范与代码资产，输出 token、主题配置、预览页和组件规范</td>
+      <td>从 PRD、现有代码库或参考风格生成轻量 <code>DESIGN.md</code> 视觉方向纲领，默认不产出重型 token、主题配置或预览页</td>
     </tr>
     <tr>
       <td><span style="white-space: nowrap;"><code>DAi-paper</code></span></td>
@@ -39,6 +39,18 @@
 - `Codex`
 
 安装完成后需要手动重启工具，skill 才会重新加载。
+
+## Design System 说明
+
+`/design-system` 现在默认生成一份轻量 `DESIGN.md`，用于给后续 UI 工作提供审美方向和执行约束，而不是一开始就生成完整设计系统资产包。
+
+它的默认取向：
+
+- 尊重用户提供的参考图、竞品、风格词和偏好，在用户观点基础上优化，而不是替用户改口味
+- 默认偏 MUJI / Dieter Rams 式克制、高效、低噪声审美，但不把任何一家风格奉为唯一标准
+- 保留 Apple / Jobs 式产品纪律：敢说“不”、追问真实动机、拒绝平庸妥协
+- 强化信息层级、排版优雅、对齐、间距、文本密度和无意义信息删除
+- 默认只产出 `DESIGN.md`；只有用户明确要求时才扩展 `tokens.css`、预览页或完整设计系统
 
 ## 安装
 
@@ -75,7 +87,7 @@ $env:SKILL="DAi-paper"; irm https://raw.githubusercontent.com/DAi0519/Skilllll/m
 ```
 
 ```text
-/design-system 基于这个 PRD 生成设计系统规范和 token
+/design-system 基于这个 PRD 生成一份 DESIGN.md 视觉方向纲领
 ```
 
 ```text
