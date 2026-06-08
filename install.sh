@@ -81,6 +81,7 @@ install_skill() {
         hierarchy-typography-discipline.md \
         minimal-efficient-aesthetic.md \
         practical-ui-field-guide.md \
+        style-boundary-discovery.md \
         design-direction-template.md; do
         download_file "${BASE_URL}/${repo_dir}/references/${file}" "${refs_dir}/${file}"
       done

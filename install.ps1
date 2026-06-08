@@ -25,6 +25,7 @@ $SKILLS_REGISTRY = @{
       "hierarchy-typography-discipline.md",
       "minimal-efficient-aesthetic.md",
       "practical-ui-field-guide.md",
+      "style-boundary-discovery.md",
       "design-direction-template.md"
     )
   }

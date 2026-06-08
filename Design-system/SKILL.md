@@ -81,6 +81,8 @@ When the user does not provide a strong style preference, or when the design fee
 
 When hierarchy, text density, alignment, spacing, typography elegance, or repeated copy may affect clarity, read [Hierarchy & Typography Discipline](references/hierarchy-typography-discipline.md).
 
+When the user's style request is vague, contradictory, or expressed as broad adjectives, read [Style Boundary Discovery](references/style-boundary-discovery.md).
+
 When making actual UI direction decisions, especially anti-generic rules, visual levers, component direction, or quality review, read [Practical UI Field Guide](references/practical-ui-field-guide.md).
 
 ---
@@ -131,6 +133,7 @@ Use the available context. Prefer quick evidence over exhaustive inventory.
 Look for:
 
 - User-provided taste inputs: reference images, competitor sites, style words, favorite products, disliked examples
+- Style boundary clues: "professional but not corporate", "warm but not cute", "dense but not oppressive", "technical but not cyber", "tool-like but not cold"
 - Visual noise: redundant containers, too many panels, too many colors, decoration without work, weak grouping, unclear hierarchy
 - Hierarchy risks: repeated headings, dense text blocks, unclear primary action, inconsistent alignment, too many type styles, weak spacing rhythm, inelegant typography
 - Meaningless information: filler copy, redundant subtitles, decorative metrics, obvious helper text, low-value metadata shown too early
@@ -155,7 +158,30 @@ Before talking about colors or components, write one sharp product sentence:
 
 If this sentence is weak, the design direction will be weak. Improve it before expanding.
 
-### 3. Choose 2-4 Visual Levers
+### 3. Discover Style Boundaries
+
+Do not jump from a vague request to a style name. First identify the **style need**: the real scene and tension the interface must resolve.
+
+Use:
+
+- **Scene**: where the design happens, for whom, during what task, under what emotional pressure
+- **Tension**: which desirable qualities must coexist without collapsing into their bad versions
+- **Output**: what design language should resolve the tension
+
+Good tensions:
+
+- Professional, but not corporate software
+- Technical, but not cyberpunk or glowing AI demo
+- Warm, but not cute or childish
+- Premium, but not luxury advertising
+- High-density, but not oppressive
+- Tool-like, but not cold
+
+Name the style need, not the style trend. Avoid lazy answers like "minimal", "editorial", "brutalist", or "glassmorphism" unless you explain the deeper need they serve.
+
+If the tensions do not form a real intersection, say so. Do not pretend a conflicting wish list is a coherent design direction.
+
+### 4. Choose 2-4 Visual Levers
 
 Visual levers are the few choices that determine the whole product's feeling. Keep them concrete.
 
@@ -183,7 +209,7 @@ Bad levers:
 
 Abstract adjectives are allowed only after they are grounded in visible decisions.
 
-### 4. Write Anti-Generic Rules
+### 5. Write Anti-Generic Rules
 
 Always include 3-6 rules that prevent default AI design.
 
@@ -196,7 +222,7 @@ Examples:
 - Do not hide hierarchy behind low-contrast gray text.
 - Do not add animation that delays the user's next action.
 
-### 5. Generate `DESIGN.md`
+### 6. Generate `DESIGN.md`
 
 Use this structure unless the project clearly needs a small variation:
 
@@ -215,16 +241,24 @@ Use this structure unless the project clearly needs a small variation:
 ## 3. Design Philosophy
 [Apple/Jobs-inspired principles translated for this product. No imitation.]
 
-## 4. Aesthetic Direction
+## 4. Style Boundary
+- Scene:
+- Core tension:
+- What it wants to be:
+- What it must not become:
+- Style need name:
+- Design translation:
+
+## 5. Aesthetic Direction
 [Default to quiet, efficient, MUJI/Rams-like restraint unless user references indicate otherwise. Explain the visual taste in concrete terms.]
 
-## 5. Visual Levers
+## 6. Visual Levers
 - [2-4 concrete levers]
 
-## 6. Anti-Generic Rules
+## 7. Anti-Generic Rules
 - [3-6 concrete prohibitions]
 
-## 7. Core Visual Direction
+## 8. Core Visual Direction
 - Color:
 - Typography:
 - Spacing and density:
@@ -233,7 +267,7 @@ Use this structure unless the project clearly needs a small variation:
 - Motion:
 - Iconography:
 
-## 8. Information Hierarchy & Typography
+## 9. Information Hierarchy & Typography
 - Primary hierarchy:
 - Alignment:
 - Spacing rhythm:
@@ -243,7 +277,7 @@ Use this structure unless the project clearly needs a small variation:
 - Meaningful information only:
 - Scan patterns:
 
-## 9. Component Direction
+## 10. Component Direction
 - Buttons:
 - Cards / surfaces:
 - Inputs:
@@ -251,13 +285,13 @@ Use this structure unless the project clearly needs a small variation:
 - Lists / data rows:
 - Empty / loading / error states:
 
-## 10. Layout Principles
+## 11. Layout Principles
 [How pages should organize content, actions, hierarchy, and responsive behavior.]
 
-## 11. Agent Rules
+## 12. Agent Rules
 - [8-10 rules future agents must obey when building UI]
 
-## 12. Optional Expansion Points
+## 13. Optional Expansion Points
 - Tokens:
 - Preview:
 - Component specs:
@@ -292,6 +326,8 @@ Before finalizing, check:
 
 - Can a future agent build a screen from this without asking what the product should feel like?
 - Did you challenge surface-level requests when a deeper design problem was likely?
+- Did you discover the style need before naming a style?
+- Did the scene and tension describe a real intersection, not a wish list at war with itself?
 - Are there fewer than 4 visual levers?
 - Are the anti-generic rules concrete enough to block bad defaults?
 - Does every visual decision support the product's core user job?
@@ -316,5 +352,6 @@ If the answer is no, revise before responding.
 - [Apple Design Philosophy](references/apple-design-philosophy.md): read when the user mentions Apple, Jobs, iOS, macOS, Liquid Glass, Human Interface Guidelines, or asks for higher taste.
 - [Minimal Efficient Aesthetic](references/minimal-efficient-aesthetic.md): read when no strong user style is provided, when the UI feels cluttered, or when the user asks for MUJI, Dieter Rams, simplicity, restraint, efficiency, or less visual noise.
 - [Hierarchy & Typography Discipline](references/hierarchy-typography-discipline.md): read when writing hierarchy, typography, alignment, spacing, text-density, or repetition-control rules.
+- [Style Boundary Discovery](references/style-boundary-discovery.md): read when discovering nuanced style needs from vague preferences, references, or aesthetic tensions.
 - [Practical UI Field Guide](references/practical-ui-field-guide.md): read when writing real design direction, choosing visual levers, preventing generic AI UI, or reviewing visual quality.
 - [Design Direction Template](references/design-direction-template.md): read when you need a tighter reusable template or the output is becoming too verbose.
