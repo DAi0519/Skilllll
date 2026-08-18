@@ -39,13 +39,10 @@ $SKILLS_REGISTRY = @{
       "template.md"
     )
   }
-  "heytea-poster-skill" = @{
-    RepoDir = "heytea-poster-skill"
+  "clumsy-handwriting" = @{
+    RepoDir = "clumsy-handwriting"
     Refs = @(
       "handwritten-poster.prompt.en.json"
-    )
-    Agents = @(
-      "openai.yaml"
     )
   }
 }
@@ -83,7 +80,6 @@ function Install-Skill {
   }
 
   $refs = "$dest\references"
-  $agents = "$dest\agents"
   Write-Host "Installing $label skill: /$SkillName"
 
   if (Test-Path $refs) {
@@ -98,16 +94,6 @@ function Install-Skill {
 
   foreach ($f in $info.Refs) {
     Invoke-WebRequest -Uri "$BASE/$repoDir/references/$f" -OutFile "$refs\$f"
-  }
-
-  if ($info.ContainsKey("Agents")) {
-    if (Test-Path $agents) {
-      Remove-Item -Recurse -Force $agents
-    }
-    New-Item -ItemType Directory -Force -Path $agents | Out-Null
-    foreach ($f in $info.Agents) {
-      Invoke-WebRequest -Uri "$BASE/$repoDir/agents/$f" -OutFile "$agents\$f"
-    }
   }
 
   Write-Host "  -> $dest"

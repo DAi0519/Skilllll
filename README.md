@@ -29,8 +29,8 @@
       <td>基于李继刚老师的 <a href="https://github.com/lijigang/ljg-skills">ljg-skills</a> 思路优化，主要读近 1-2 年的 <code>AIGC / 空间智能 / 交互</code> 方向论文，输出结构化 Markdown 笔记；如果线程里已确认可写 Notion 目标，默认同步到 Notion 数据库</td>
     </tr>
     <tr>
-      <td><span style="white-space: nowrap;"><code>喜茶风海报</code></span></td>
-      <td><span style="white-space: nowrap;"><code>$heytea-poster-skill</code></span></td>
+      <td><span style="white-space: nowrap;"><code>笨拙手写风</code></span></td>
+      <td><span style="white-space: nowrap;"><code>$clumsy-handwriting</code></span></td>
       <td>根据主题生成自然、安静、留白充足的笨拙手写体海报，或输出可复制的图像生成提示词</td>
     </tr>
   </tbody>
@@ -71,7 +71,7 @@ curl -sL https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.sh | ba
 curl -sL https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.sh | SKILL=prd bash
 curl -sL https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.sh | SKILL=design-system bash
 curl -sL https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.sh | SKILL=DAi-paper bash
-curl -sL https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.sh | SKILL=heytea-poster-skill bash
+curl -sL https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.sh | SKILL=clumsy-handwriting bash
 ```
 
 ### Windows (PowerShell)
@@ -84,7 +84,7 @@ irm https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.ps1 | iex
 $env:SKILL="prd"; irm https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.ps1 | iex
 $env:SKILL="design-system"; irm https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.ps1 | iex
 $env:SKILL="DAi-paper"; irm https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.ps1 | iex
-$env:SKILL="heytea-poster-skill"; irm https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.ps1 | iex
+$env:SKILL="clumsy-handwriting"; irm https://raw.githubusercontent.com/DAi0519/Skilllll/main/install.ps1 | iex
 ```
 
 ## 使用示例
@@ -102,7 +102,7 @@ $env:SKILL="heytea-poster-skill"; irm https://raw.githubusercontent.com/DAi0519/
 ```
 
 ```text
-使用 $heytea-poster-skill，为“雨天散步”生成一张安静留白的手写体海报
+使用 $clumsy-handwriting，为“雨天散步”生成一张安静留白的手写体海报
 ```
 
 ## 仓库结构
@@ -112,7 +112,7 @@ $env:SKILL="heytea-poster-skill"; irm https://raw.githubusercontent.com/DAi0519/
 ├── PRD/
 ├── Design-system/
 ├── DAi-paper/
-├── heytea-poster-skill/
+├── clumsy-handwriting/
 ├── install.sh
 └── install.ps1
 ```
@@ -125,8 +125,8 @@ $env:SKILL="heytea-poster-skill"; irm https://raw.githubusercontent.com/DAi0519/
 
 ```bash
 # 卸载全部
-rm -rf ~/.claude/skills/prd ~/.claude/skills/design-system ~/.claude/skills/DAi-paper ~/.claude/skills/heytea-poster-skill
-rm -rf ~/.codex/skills/prd ~/.codex/skills/design-system ~/.codex/skills/DAi-paper ~/.codex/skills/heytea-poster-skill
+rm -rf ~/.claude/skills/prd ~/.claude/skills/design-system ~/.claude/skills/DAi-paper ~/.claude/skills/clumsy-handwriting
+rm -rf ~/.codex/skills/prd ~/.codex/skills/design-system ~/.codex/skills/DAi-paper ~/.codex/skills/clumsy-handwriting
 
 # 卸载单个
 rm -rf ~/.claude/skills/prd
@@ -135,16 +135,16 @@ rm -rf ~/.claude/skills/design-system
 rm -rf ~/.codex/skills/design-system
 rm -rf ~/.claude/skills/DAi-paper
 rm -rf ~/.codex/skills/DAi-paper
-rm -rf ~/.claude/skills/heytea-poster-skill
-rm -rf ~/.codex/skills/heytea-poster-skill
+rm -rf ~/.claude/skills/clumsy-handwriting
+rm -rf ~/.codex/skills/clumsy-handwriting
 ```
 
 ### Windows (PowerShell)
 
 ```powershell
 # 卸载全部
-Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\skills\prd", "$env:USERPROFILE\.claude\skills\design-system", "$env:USERPROFILE\.claude\skills\DAi-paper", "$env:USERPROFILE\.claude\skills\heytea-poster-skill"
-Remove-Item -Recurse -Force "$env:USERPROFILE\.codex\skills\prd", "$env:USERPROFILE\.codex\skills\design-system", "$env:USERPROFILE\.codex\skills\DAi-paper", "$env:USERPROFILE\.codex\skills\heytea-poster-skill"
+Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\skills\prd", "$env:USERPROFILE\.claude\skills\design-system", "$env:USERPROFILE\.claude\skills\DAi-paper", "$env:USERPROFILE\.claude\skills\clumsy-handwriting"
+Remove-Item -Recurse -Force "$env:USERPROFILE\.codex\skills\prd", "$env:USERPROFILE\.codex\skills\design-system", "$env:USERPROFILE\.codex\skills\DAi-paper", "$env:USERPROFILE\.codex\skills\clumsy-handwriting"
 
 # 卸载单个
 Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\skills\prd"
@@ -153,6 +153,6 @@ Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\skills\design-system"
 Remove-Item -Recurse -Force "$env:USERPROFILE\.codex\skills\design-system"
 Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\skills\DAi-paper"
 Remove-Item -Recurse -Force "$env:USERPROFILE\.codex\skills\DAi-paper"
-Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\skills\heytea-poster-skill"
-Remove-Item -Recurse -Force "$env:USERPROFILE\.codex\skills\heytea-poster-skill"
+Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\skills\clumsy-handwriting"
+Remove-Item -Recurse -Force "$env:USERPROFILE\.codex\skills\clumsy-handwriting"
 ```

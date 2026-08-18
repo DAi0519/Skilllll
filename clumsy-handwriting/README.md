@@ -1,4 +1,4 @@
-# 喜茶风海报 Skill
+# 笨拙手写风 Skill
 
 一个用于 Codex 的非官方海报生成 Skill。它完整加载手写体海报 Prompt 母版，根据用户主题生成自然、安静、留白充足的手写体海报或可复制的图像生成提示词。
 
@@ -8,14 +8,14 @@
 
 ## 效果示例
 
-![“热干面，武汉的早晨从一碗热干面开始”手写体海报](https://raw.githubusercontent.com/DAi0519/Skilllll/main/docs/heytea-poster-skill-hot-dry-noodles-example.png)
+![“热干面，武汉的早晨从一碗热干面开始”手写体海报](https://raw.githubusercontent.com/DAi0519/Skilllll/main/docs/clumsy-handwriting-hot-dry-noodles-example.png)
 
 ## 安装
 
 把下面这句话发送给 Codex：
 
 ```text
-请安装这个 Skill：https://github.com/DAi0519/Skilllll/tree/main/heytea-poster-skill
+请安装这个 Skill：https://github.com/DAi0519/Skilllll/tree/main/clumsy-handwriting
 ```
 
 安装完成后，新开一个任务即可使用。
@@ -25,13 +25,13 @@
 显式调用：
 
 ```text
-使用 $heytea-poster-skill，为“雨天散步”生成一张安静留白的手写体海报。
+使用 $clumsy-handwriting，为“雨天散步”生成一张安静留白的手写体海报。
 ```
 
 也可以直接描述：
 
 ```text
-做一张喜茶风海报，主标题是“慢慢喝”，辅助句是“把时间留给茶”。
+做一张笨拙手写风海报，主标题是“慢慢喝”，辅助句是“把时间留给茶”。
 ```
 
 如果只需要提示词，请明确说“只输出图像生成 prompt，不生成图片”。
