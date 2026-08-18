@@ -1,4 +1,8 @@
 #!/usr/bin/env sh
+# [INPUT]: 依赖 GitHub raw 文件、curl 或 wget，以及 Claude Code/Codex 的本地 skills 目录
+# [OUTPUT]: 对外提供按名称或批量安装 Skill 的 POSIX shell 入口
+# [POS]: Skilllll 的 macOS、Linux、WSL 安装器，与 install.ps1 保持功能对称
+# [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
 set -eu
 
 REPO="${REPO:-DAi0519/Skilllll}"
@@ -54,6 +58,7 @@ install_skill() {
   esac
 
   refs_dir="${install_dir}/references"
+  agents_dir="${install_dir}/agents"
   echo "Installing ${target_name} skill: /${skill_name}"
 
   rm -rf "${refs_dir}"
@@ -92,6 +97,15 @@ install_skill() {
         download_file "${BASE_URL}/${repo_dir}/references/${file}" "${refs_dir}/${file}"
       done
       ;;
+    heytea-poster-skill)
+      for file in \
+        handwritten-poster.prompt.en.json; do
+        download_file "${BASE_URL}/${repo_dir}/references/${file}" "${refs_dir}/${file}"
+      done
+      rm -rf "${agents_dir}"
+      mkdir -p "${agents_dir}"
+      download_file "${BASE_URL}/${repo_dir}/agents/openai.yaml" "${agents_dir}/openai.yaml"
+      ;;
   esac
 
   UPDATED_TARGETS="${UPDATED_TARGETS}${target_name} /${skill_name}: ${install_dir}\n"
@@ -105,6 +119,7 @@ install_for_target() {
       install_skill "prd" "PRD" "$target_key"
       install_skill "design-system" "Design-system" "$target_key"
       install_skill "DAi-paper" "DAi-paper" "$target_key"
+      install_skill "heytea-poster-skill" "heytea-poster-skill" "$target_key"
       ;;
     prd)
       install_skill "prd" "PRD" "$target_key"
@@ -115,8 +130,11 @@ install_for_target() {
     DAi-paper)
       install_skill "DAi-paper" "DAi-paper" "$target_key"
       ;;
+    heytea-poster-skill)
+      install_skill "heytea-poster-skill" "heytea-poster-skill" "$target_key"
+      ;;
     *)
-      echo "Error: unknown skill '${SKILL}'. Available: prd, design-system, DAi-paper, all" >&2
+      echo "Error: unknown skill '${SKILL}'. Available: prd, design-system, DAi-paper, heytea-poster-skill, all" >&2
       exit 1
       ;;
   esac

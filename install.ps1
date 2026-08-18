@@ -1,3 +1,7 @@
+# [INPUT]: 依赖 GitHub raw 文件、Invoke-WebRequest，以及 Claude Code/Codex 的本地 skills 目录
+# [OUTPUT]: 对外提供按名称或批量安装 Skill 的 PowerShell 入口
+# [POS]: Skilllll 的 Windows 安装器，与 install.sh 保持功能对称
+# [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
 $ErrorActionPreference = "Stop"
 
 $REPO   = "DAi0519/Skilllll"
@@ -35,6 +39,15 @@ $SKILLS_REGISTRY = @{
       "template.md"
     )
   }
+  "heytea-poster-skill" = @{
+    RepoDir = "heytea-poster-skill"
+    Refs = @(
+      "handwritten-poster.prompt.en.json"
+    )
+    Agents = @(
+      "openai.yaml"
+    )
+  }
 }
 
 function Has-Claude {
@@ -70,6 +83,7 @@ function Install-Skill {
   }
 
   $refs = "$dest\references"
+  $agents = "$dest\agents"
   Write-Host "Installing $label skill: /$SkillName"
 
   if (Test-Path $refs) {
@@ -84,6 +98,16 @@ function Install-Skill {
 
   foreach ($f in $info.Refs) {
     Invoke-WebRequest -Uri "$BASE/$repoDir/references/$f" -OutFile "$refs\$f"
+  }
+
+  if ($info.ContainsKey("Agents")) {
+    if (Test-Path $agents) {
+      Remove-Item -Recurse -Force $agents
+    }
+    New-Item -ItemType Directory -Force -Path $agents | Out-Null
+    foreach ($f in $info.Agents) {
+      Invoke-WebRequest -Uri "$BASE/$repoDir/agents/$f" -OutFile "$agents\$f"
+    }
   }
 
   Write-Host "  -> $dest"

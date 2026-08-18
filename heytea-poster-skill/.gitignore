@@ -1,0 +1,7 @@
+.DS_Store
+*.baiduyun.uploading.cfg
+
+# Local authoring data; never publish.
+drafts/
+manifest.json
+references/README.md
