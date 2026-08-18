@@ -6,7 +6,7 @@
 
 ## 效果示例
 
-![“热干面，武汉的早晨从一碗热干面开始”手写体海报](./assets/hot-dry-noodles-example.png)
+![“热干面，武汉的早晨从一碗热干面开始”手写体海报](https://raw.githubusercontent.com/DAi0519/Skilllll/main/docs/heytea-poster-skill-hot-dry-noodles-example.png)
 
 ## 安装
 
