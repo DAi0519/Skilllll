@@ -33,6 +33,11 @@
       <td><span style="white-space: nowrap;"><code>$clumsy-handwriting</code></span></td>
       <td>根据主题生成自然、安静、留白充足的笨拙手写体海报，或输出可复制的图像生成提示词</td>
     </tr>
+    <tr>
+      <td><span style="white-space: nowrap;"><code>produce-style-posters</code></span></td>
+      <td>源码已完整保存，未本地安装</td>
+      <td>风格反推、双版提示词、真实生图验证及海报交付工作流；主文件、3 份参考资料和证据校验脚本齐全，production v1 保留为已撤回的历史可选契约，见 <a href="produce-style-posters/SOURCE-STATUS.md">来源与校验记录</a></td>
+    </tr>
   </tbody>
 </table>
 
@@ -59,7 +64,7 @@
 
 ## 安装
 
-默认安装全部 skills。
+默认安装脚本已支持的 4 个 skills。`produce-style-posters` 源码已完整保存，尚未纳入安装器或注册到本地 Codex。
 
 ### macOS / Linux / WSL
 
@@ -113,6 +118,7 @@ $env:SKILL="clumsy-handwriting"; irm https://raw.githubusercontent.com/DAi0519/S
 ├── Design-system/
 ├── DAi-paper/
 ├── clumsy-handwriting/
+├── produce-style-posters/  # 完整源码归档，未本地安装
 ├── install.sh
 └── install.ps1
 ```
